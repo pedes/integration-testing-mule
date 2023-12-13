@@ -3,6 +3,9 @@ import * from bat::Assertions
 
 // Install BAT and run this test file , see more: https://docs.mulesoft.com/api-functional-monitoring/bat-execute-task
 // run the command from this folder bat OR bat ./checkin-test-suite.dwl
+
+var nombre = "Sarah Connor"
+// typeOf
 ---
 describe `Happy Path CheckIn` in [
   PUT `https://check-in-papi-app-dev-sh1u65.5sc6y6-3.usa-e2.cloudhub.io/api/v1/tickets/PNR0000/checkin` with {
@@ -15,7 +18,8 @@ describe `Happy Path CheckIn` in [
       }
     } assert [
       $.response.status mustEqual 200,
-      $.response.body.paymentID mustEqual "PAY-1AKD7482FAB9STATKO"
+      $.response.body.paymentID mustEqual "PAY-1AKD7482FAB9STATKO",
+      tyepOf($.response.body.paymentID) mustEqual "String"
     ] execute [
       log($.response) // <--- Then we’ll log the response
     ]
